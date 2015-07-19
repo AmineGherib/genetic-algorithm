@@ -13,20 +13,8 @@
 #include <random>
 #include <sys/stat.h>
 
-
-int min(int i, int j)
-{
-   if (i < j)
-      return i;
-   return j;
-}
-
-int max(int i, int j)
-{
-   if (j < i)
-      return i;
-   return j;
-}
+using std::min;
+using std::max;
 
 static constexpr size_t pairCombinations(size_t n) { return n * (n-1) / 2; }
 
@@ -173,12 +161,13 @@ class Prisoner
             
             static Strategy crossover(Strategy A, Strategy B)
             {
+               static const Strategy mask("1111111111111111111111111111111111111111111111111111111111111111");
                unsigned long cpoint = Rand::rand63plus1();
                Strategy next;
-               next.strat = (A.strat << cpoint) | (B.strat >> (64 - cpoint));
+               next.strat = (A.strat & (mask.strat << cpoint)) | (B.strat & (mask.strat >> (64 - cpoint)));
                return std::move(next);
             } 
-            
+
             static unsigned long countUniqueBits(Strategy const& a, Strategy const& b)
             {
                std::bitset<64> s(a.strat ^ b.strat);
