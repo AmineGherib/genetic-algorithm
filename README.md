@@ -48,11 +48,10 @@ the following cycle:
    (evaluate -> select -> crossover -> mutate -> evaluate -> select -> merge)
 
 3. Number of prisoner's dilemma iterations - during each of genetic algorithm iteration, the prisoners in the population with 
-play the prisoner's dilemma this specified number of times in order to asses their score and fitness.
+play the prisoner's dilemma this specified number of times in order to assess their score and fitness.
 4. Selection rate - the proportion of the population to be selected for crossover and then survival during a given genetic algorithm iteration.
 this value is actually the proportion of a random variable of a binomial distribution, so the exact number selected will vary slightly from turn 
-to turn.  For example, a selection rate of 15% with a population size of 100 might result in 13 players one turn, 16 players another, 14 another, 
-etc.
+to turn.  For example, a selection rate of 15% with a population size of 100 might result in 13 players one turn, 16 players another, and 14 another.
 5. Mutation rate - the percentage of the population to apply a mutation to during a single genetic algorithm iteration.
 
 Further, the five weighting factors to be used in the calculation of fitness are also specified, and the sum of these factors should add to 1.0
